@@ -1,0 +1,6 @@
+<apex:page standardController="Case" extensions="SupportCaseController">
+<apex:pageBlock>
+    <apex:inputField value="{!caseToCreate.description}"/>
+    <apex:inputField value="{!caseToCreate.relatedRecord__c}"/>
+</apex:pageBlock>
+</apex:page>
