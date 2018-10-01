@@ -1,0 +1,38 @@
+<aura:component controller="LightningSupportCaseController" implements="force:hasRecordId, flexipage:availableForAllPageTypes">
+  <!-- Handlers-->
+  <aura:handler name="init" action="{!c.onInit}" value="{!this}" />
+  <!-- Attributes -->
+  <aura:attribute name="parentRecord" type="Map" />
+  <aura:attribute name="case" type="Case" />
+  <aura:attribute name="caseId" type="String" />
+  <aura:attribute name="caseFields" type="String[]" default="[‘Subject','Description']" />
+  <aura:attribute name="saveButtonDisabled" type="Boolean" />
+  <aura:attribute name="serverResponse" type="String" />
+  <aura:attribute name="showServerResponse" type="Boolean" />
+
+  <!-- HTML body-->
+  <div>
+    <h3>Submit a support case</h3>
+
+    <!--lightning:layout >
+            <lightning:layoutItem >
+                <lightning:inputField label="Subject" aura:id="caseSubject" value="{!v.case.Subject}" required="true"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem >
+                <lightning:inputField label="Description" aura:id="caseDescription" value="{!v.case.Description}" required="true"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <lightning:button label="Submit case" onclick="{!c.submit}"/-->
+    <lightning:recordEditForm objectApiName="Case" onsubmit="{!c.onSubmit}" onsuccess="{!c.onSuccess}">
+      <lightning:messages />
+      <lightning:inputField fieldName="Subject" required="true" aura:id="subjectField"/>
+      <lightning:inputField fieldName="Description" required="true" aura:id="descriptionField"/>
+
+      <lightning:button type="Submit" label="Submit case" aura:id="submitButton" />
+    </lightning:recordEditForm>
+    <aura:if isTrue="{!v.showServerResponse}">
+      <lightning:textArea readonly="true" value="{!v.serverResponse}" />
+    </aura:if>
+
+  </div>
+</aura:component>

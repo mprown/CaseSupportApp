@@ -2,3 +2,5 @@
 ./mdapi
 ./mdapioutput
 ./tests
+.SFDX
+.DS_STORE
